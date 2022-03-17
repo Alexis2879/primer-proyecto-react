@@ -1,11 +1,15 @@
 // En material existe un tag llamando container
 import { useEffect, useState } from "react";
-import { Container } from "@mui/material";
+import { Container, Card, CardContent, CardMedia, Grid } from "@mui/material";
 import { getDataFromPokemon } from "../../service";
+import PokemonDetail from "../../components/PokemonDetail";
 // vamos a ver como pode ejecutar la funcion que se encargar de traer a los
 // pokemones
 
 const Home = () => {
+  const imgUrl =
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/";
+
   // vamos a crear una variable la cual se encargue de guardar la lista de pokemones
   const [pokemons, setPokemon] = useState([]);
 
@@ -31,7 +35,7 @@ const Home = () => {
     //! la funcion que este dentro de useEffect se llamada n veces de forma infinita
   }, []);
 
-  eturn (
+  return (
     <Container>
       <h1>Pokedex</h1>
       {/* es bueno validar que el array este lleno para que recien ejecute el map */}
@@ -51,13 +55,28 @@ const Home = () => {
       ) : (
         <h4>No hay datos</h4>
       )} */}
-
-      {pokemons.length > 0 &&
-        pokemons.map((pokemon) => (
-          // aca el codigo visual
-          <p>{pokemon.name}</p>
-        ))}
+      <Grid container spacing={3}>
+        {pokemons.length > 0 &&
+          pokemons.map((pokemon, index) => (
+            // aca el codigo visual
+            <Grid item md={4} lg={4} sm={12} xs={12}>
+              <Card className="card-pokemon">
+                <CardMedia
+                  component="img"
+                  className="img-pokemon"
+                  image={`${imgUrl}${index + 1}.svg`}
+                />
+                <CardContent className="center">
+                  <h3 className="name-pokemon">{pokemon.name}</h3>
+                  {/* vamos a pasarle el nombre como atributo*/}
+                  <PokemonDetail nombre={pokemon.name} />
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+      </Grid>
     </Container>
   );
 };
+
 export default Home;

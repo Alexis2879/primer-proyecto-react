@@ -15,3 +15,25 @@ form {
 h5 {
   color: purple;
 }
+
+.center {
+  text-align: center;
+}
+
+.card-pokemon {
+  max-width: 300px;
+  min-height: 400px;
+  max-height: 400px;
+}
+
+.img-pokemon {
+  min-height: 250px;
+  max-height: 250px;
+  object-fit: contain !important;
+  margin-top: 15px;
+}
+
+.name-pokemon {
+  text-transform: uppercase;
+  text-align: center;
+}
