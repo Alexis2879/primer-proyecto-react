@@ -11,6 +11,9 @@
  import Flags from "../pages/Flags";
  import Youtube from "../pages/Youtube";
  import YoutubeAdministrator from "../pages/YoutubeAdministrador";
+ import MovieUpdate from "../pages/MovieUpdate";
+
+ import infobandera from "../pages/infobandera";
  
  // Nuestro Router va a ser un componente el cual se encargue de retornar
  // las rutas con su respectiva vista
@@ -25,8 +28,14 @@
          <Route
            path="/youtube/administrador"
            element={<YoutubeAdministrator />}
-         ></Route>
+         />
+         <Route
+           path="/youtube/administrador/editar/:id"
+           element={<MovieUpdate />}
+         />
        </Routes>
+       <Route path="/infobandera" element={<infobandera />} />
+      
      </BrowserRouter>
    );
  };
