@@ -14,8 +14,11 @@
  import YoutubeAdministrator from "../pages/YoutubeAdministrador";
  import MovieUpdate from "../pages/MovieUpdate";
  import Login from "../pages/Login";
+ import PopularWeek from "../pages/PopularWeek";
  // Layout
  import Main from "../layouts/Main";
+ import Private from "../layouts/Private";
+ import Ecommerce from "../layouts/Ecommerce";
  
  // Nuestro Router va a ser un componente el cual se encargue de retornar
  // las rutas con su respectiva vista
@@ -24,11 +27,20 @@
    return (
      <BrowserRouter>
        <Routes>
+         {/* ROUTE DEL MAIN (PUBLICAS) */}
+         <Route path="login" element={<Login />} />
          <Route element={<Main />}>
            <Route path="/" element={<Home />} />
            <Route path="/flags" element={<Flags />} />
            <Route path="/flag/detail/:name" element={<Detail />} />
            <Route path="/youtube" element={<Youtube />} />
+         </Route>
+         {/* ROUTE para ecommerce */}
+         <Route element={<Ecommerce />}>
+           <Route path="ecommerce" element={<PopularWeek />} />
+         </Route>
+         {/* ROUTE DEL ADMIN (PRIVADAS) */}
+         <Route element={<Private />}>
            <Route
              path="/youtube/administrador"
              element={<YoutubeAdministrator />}
@@ -38,7 +50,6 @@
              element={<MovieUpdate />}
            />
          </Route>
-         <Route path="login" element={<Login />} />
        </Routes>
      </BrowserRouter>
    );
