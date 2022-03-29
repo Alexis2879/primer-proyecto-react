@@ -16,6 +16,8 @@
  import Login from "../pages/Login";
  import PopularWeek from "../pages/PopularWeek";
  import BasketView from "../pages/BasketView";
+ import CreateProduct from "../pages/CreateProduct";
+ import Profile from "../pages/Profile";
  // Layout
  import Main from "../layouts/Main";
  import Private from "../layouts/Private";
@@ -43,18 +45,20 @@
          </Route>
          {/* ROUTE DEL ADMIN (PRIVADAS) */}
          <Route element={<Private />}>
-           <Route
-             path="/youtube/administrador"
-             element={<YoutubeAdministrator />}
-           />
-           <Route
-             path="/youtube/administrador/editar/:id"
-             element={<MovieUpdate />}
-           />
-         </Route>
-       </Routes>
-     </BrowserRouter>
-   );
- };
- 
- export default Router;
+          <Route
+            path="/youtube/administrador"
+            element={<YoutubeAdministrator />}
+          />
+          <Route
+            path="/youtube/administrador/editar/:id"
+            element={<MovieUpdate />}
+          />
+          <Route path="/ecommerce/create" element={<CreateProduct />} />
+          <Route path="/perfil" element={<Profile />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default Router;

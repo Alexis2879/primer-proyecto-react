@@ -1,5 +1,20 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore/lite";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { v4 as uuidv4 } from "uuid";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBu0tNvcQBbGJXjfzm0-QzrHS6xnz3iFZ4",
@@ -26,4 +41,82 @@ export const getProductClothes = async () => {
   const clothes = documentClothes.docs.map((doc) => doc.data());
   return clothes;
 };
-  
+
+// debemos crear una funcion que se encargue de poder crear
+// elementos en nuestra base de datos
+// ojo: vamos a recibir como parametro un objeto que contenga
+// la informacion del producto que estamos creado
+export const storeProductClothe = async (product) => {
+  const id = uuidv4().replaceAll("-", "");
+  product.id = id;
+  await setDoc(doc(db, "product_clothes", id), product);
+};
+
+// actualizar un datos en firebase
+export const updateProductClothe = async (product) => {
+  const productRef = doc(db, "product_clothes", product.id);
+
+  await updateDoc(productRef, product);
+};
+
+// eliminar un registros de la db
+export const deleteProductClothe = async (id) => {
+  await deleteDoc(doc(db, "product_clothes", id));
+};
+
+// vamos a crear una funcion qu reciba un email y password
+// y cree un cuenta en firebase
+const auth = getAuth();
+
+// podemos crear una funcion que nos retorne el usuario actual
+export const getUserFromFirebase = () => {
+  return auth.currentUser;
+};
+
+export const updateUserProfile = async (profile) => {
+  try {
+    await updateProfile(auth.currentUser, profile);
+    return {
+      ok: true,
+      data: "success",
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: error.message,
+    };
+  }
+};
+
+export const storeUser = async (email, password) => {
+  try {
+    const user = await createUserWithEmailAndPassword(auth, email, password);
+    console.log(user);
+    return {
+      ok: true,
+      data: user,
+    };
+  } catch (error) {
+    console.log(error.message);
+    return {
+      ok: false,
+      data: error.message,
+    };
+  }
+};
+
+export const loginUser = async (email, password) => {
+  try {
+    const user = await signInWithEmailAndPassword(auth, email, password);
+
+    return {
+      ok: true,
+      data: user,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      data: error.message,
+    };
+  }
+};
