@@ -121,4 +121,6 @@ export const loginUser = async (email, password) => {
       data: error.message,
     };
   }
+
+  
 };
