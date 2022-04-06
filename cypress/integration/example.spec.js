@@ -1,7 +1,7 @@
 // para poder evitar el erro de cy is not defined vamos a definir a cy como global
 /* global cy */
 
-const { default: cy } = require("date-fns/esm/locale/cy/index.js");
+
 
 // Este archivo sera el que contenga nuestras pruebas
 // Para poder iniciar una prueba necesitamos darle un titulo
