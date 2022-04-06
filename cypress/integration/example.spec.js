@@ -30,7 +30,7 @@ describe("Mi primera prueba con cypress", () => {
   
     // vamos a crear a otra prueba para /flags
     it("pruebas para banders", () => {
-      cy.visit("https://primer-proyecto-react.vercel.app/");
+      cy.visit("https://primer-proyecto-react.vercel.app/flags");
       // vamos a ver como podemos escribir en un input
       // Estamos buscando el primero input y luego de encontrarlos
       // estamos escribiendo peru en dicho input
@@ -44,14 +44,14 @@ describe("Mi primera prueba con cypress", () => {
       // Creeen una prueba para http://localhost:3000/youtube y
   // verifiquen si que existe un titulo NAME 33
   it("encontrar el titulo de youtube", () => {
-    cy.visit("https://primer-proyecto-react.vercel.app//youtube");
+    cy.visit("https://primer-proyecto-react.vercel.app/youtube");
     cy.wait(5000).then(() => {
         cy.contains("name 33");
     });   
    });
 
    it("prueba de login", () => {
-    cy.visit("https://primer-proyecto-react.vercel.app//login");
+    cy.visit("https://primer-proyecto-react.vercel.app/login");
     // ahora vamos a ver de que otra podemos acceder a los inputs
     // usando el name del inputs podemos encontrar uno especifico y
     // poder escribir en el
