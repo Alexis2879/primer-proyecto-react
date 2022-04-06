@@ -1,8 +1,6 @@
 // para poder evitar el erro de cy is not defined vamos a definir a cy como global
 /* global cy */
 
-
-
 // Este archivo sera el que contenga nuestras pruebas
 // Para poder iniciar una prueba necesitamos darle un titulo
 // en este caso usamos describe para darle un titulo
@@ -69,7 +67,7 @@ describe("Mi primera prueba con cypress", () => {
     cy.get('[name="wallpaper"]').type("www.google.com");
     cy.get(".btn-crear-movie").click();
     cy.contains("Hombre araña 2");
-    // Eliminar la ultima pelicula que hemos agregado
+    // Eliminar la ultima pelicula que hemo agregado
     // recurden que estamos accediente al ultimo boton porque estamos usando .last()
     cy.get(".delete-button").last().click();
     cy.contains("OK").click();
