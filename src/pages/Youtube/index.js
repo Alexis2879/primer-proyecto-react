@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Box, Grid, TextField } from "@mui/material";
 import { getMovies } from "../../service/movies";
-import "../Pokemon/index.css";
+import "./index.css";
 
 const Youtube = () => {
   const [movies, setMovies] = useState([]);
